@@ -1,6 +1,6 @@
-import path from "node:path";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
+import path from "node:path";
 
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
@@ -26,6 +26,16 @@ export default defineConfig({
     lib: {
       entry: path.resolve(__dirname, "lib/main.ts"),
       formats: ["es"],
+    },
+    rollupOptions: {
+      external: [
+        "react",
+        "react/jsx-runtime",
+        "tailwindcss",
+        "tailwind-merge",
+        "react-dom",
+        "@tailwindcss/vite",
+      ],
     },
   },
 });
