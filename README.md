@@ -20,7 +20,6 @@ Project's main dependencies are listed below.
 | React        | ^19.x   |
 | Tailwind CSS | ^4.x    |
 | Vitest       | ^4.x    |
-| Playwright   | ^1.x    |
 | Storybook    | ^10.x   |
 
 ### Package descriptions
@@ -29,7 +28,6 @@ Project's main dependencies are listed below.
 - **React** - JavaScript library for building user interfaces
 - **Tailwind CSS** - Utility-first CSS framework for rapid UI development
 - **Vitest** - Fast unit testing framework powered by Vite
-- **Playwright** - End-to-end testing framework for reliable cross-browser testing
 - **Storybook** - UI development environment and playground for building, previewing, and testing isolated components interactively
 
 ## Infrastructure
@@ -81,13 +79,9 @@ Open [http://localhost:5173](http://localhost:5173) with your browser to see the
 ## Available scripts
 
 ```bash
-yarn dev              # Start development server
 yarn build            # Build for production
-yarn preview          # Start production server (after build)
 yarn test             # Run unit tests with Vitest
 yarn test:coverage    # Run tests with coverage report
-yarn e2e              # Run end-to-end tests with Playwright
-yarn e2e:ui           # Run Playwright tests in UI mode
 yarn lint             # Run Biome linter
 yarn lint:fix         # Fix linting issues automatically
 yarn storybook        # Run Storybook in development mode
@@ -96,24 +90,19 @@ yarn storybook:build  # Build Storybook for production
 
 ## Build
 
-This project uses Vite and React Router for building and serving the application. The build process generates optimized static assets for production deployment.
+This project uses Vite for building the library. The build process generates optimized static assets for production deployment.
 
-Build the project with `yarn build` and preview the production build locally with `yarn preview`.
+Build the project with `yarn build`, you'll see the built library in the `dist` directory.
 
 ## Testing
 
-This boilerplate includes both unit testing and end-to-end testing:
-
-- **Unit Tests**: Uses Vitest with React Testing Library for component and utility testing
-- **E2E Tests**: Uses Playwright for browser-based end-to-end testing
+This library uses Vitest with React Testing Library for component and utility testing
 
 Run tests with:
 
 ```bash
 yarn test              # Run unit tests
 yarn test:coverage     # Run tests with coverage
-yarn e2e               # Run E2E tests
-yarn e2e:ui            # Run E2E tests in UI mode
 ```
 
 ## Linting
@@ -157,6 +146,5 @@ yarn storybook:build  # Build Storybook for production deployment
 - [Learn React](https://react.dev/learn) - an interactive React.js tutorial
 - [Tailwind CSS Documentation](https://tailwindcss.com/) - Tailwind CSS documentation
 - [Vitest Documentation](https://vitest.dev/) - Vitest testing framework documentation
-- [Playwright Documentation](https://playwright.dev/) - Playwright E2E testing documentation
 - [BiomeJS Documentation](https://biomejs.dev/) - BiomeJS linter and formatter documentation
 - [Storybook Documentation](https://storybook.js.org/) - Storybook component development and visual testing documentation
