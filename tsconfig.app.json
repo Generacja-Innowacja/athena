@@ -23,7 +23,7 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "rootDirs": [".", "./.react-router/types"]
+    "rootDirs": ["."]
   },
-  "include": ["src", "src/routes.ts", ".react-router/types/**/*"]
+  "include": ["lib"]
 }

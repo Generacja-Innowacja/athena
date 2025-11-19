@@ -1,5 +1,5 @@
 {
-  "name": "vite-boilerplate",
+  "name": "athena",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,7 +8,7 @@
   "author": "generacja-innowacja",
   "scripts": {
     "dev": "vite",
-    "build": "npx react-router build",
+    "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
     "test:coverage": "vitest run --coverage",
@@ -24,7 +24,6 @@
     "@tailwindcss/vite": "^4.1.17",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-router": "^7.9.6",
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.17"
   },
@@ -33,7 +32,6 @@
     "@chromatic-com/storybook": "4.1.3",
     "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.56.1",
-    "@react-router/dev": "^7.9.6",
     "@storybook/addon-a11y": "10.0.8",
     "@storybook/addon-docs": "10.0.8",
     "@storybook/addon-onboarding": "10.0.8",
@@ -60,6 +58,7 @@
     "typescript": "5.9.2",
     "typescript-eslint": "^8.46.3",
     "vite": "^7.2.2",
+    "vite-plugin-dts": "^4.5.4",
     "vitest": "^4.0.10",
     "vitest-browser-react": "^2.0.2"
   },
