@@ -21,9 +21,6 @@ Project's main dependencies are listed below.
 | Tailwind CSS | ^4.x    |
 | Vitest       | ^4.x    |
 | Playwright   | ^1.x    |
-| Zod          | ^4.x    |
-| Axios        | ^1.x    |
-| Zustand      | ^5.x    |
 | Storybook    | ^10.x   |
 
 ### Package descriptions
@@ -31,11 +28,8 @@ Project's main dependencies are listed below.
 - **Vite** - Next-generation frontend build tool providing fast development experience with instant HMR and optimized production builds
 - **React** - JavaScript library for building user interfaces
 - **Tailwind CSS** - Utility-first CSS framework for rapid UI development
-- **Zod** - TypeScript-first schema validation library for runtime type checking
-- **Axios** - Promise-based HTTP client for making API requests
 - **Vitest** - Fast unit testing framework powered by Vite
 - **Playwright** - End-to-end testing framework for reliable cross-browser testing
-- **Zustand** - Lightweight state management library for React applications
 - **Storybook** - UI development environment and playground for building, previewing, and testing isolated components interactively
 
 ## Infrastructure
