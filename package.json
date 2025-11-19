@@ -21,19 +21,12 @@
     "storybook:build": "storybook build"
   },
   "dependencies": {
-    "@react-router/fs-routes": "^7.9.6",
-    "@react-router/node": "^7.9.6",
-    "@react-router/serve": "^7.9.6",
     "@tailwindcss/vite": "^4.1.17",
-    "axios": "^1.13.2",
-    "isbot": "^5.1.32",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router": "^7.9.6",
     "tailwind-merge": "^3.4.0",
-    "tailwindcss": "^4.1.17",
-    "zod": "^4.1.12",
-    "zustand": "^5.0.8"
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.6",
