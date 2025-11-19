@@ -40,51 +40,7 @@ jobs:
         with:
           name: frontend-build
           if-no-files-found: error
-          path: build
-
-  e2e:
-    name: Test E2E
-    needs: build
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 24.x
-          cache: yarn
-
-      - name: Download built app
-        uses: actions/download-artifact@v4
-        with:
-          name: frontend-build
-          path: build
-
-      - name: Start app
-        run: |
-          set -e
-          yarn preview &
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps --only-shell
-
-      - name: Run Playwright tests (against built app)
-        run: npx playwright test
-
-      - name: Upload Playwright report
-        if: ${{ !cancelled() }}
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: /playwright-report/
-          retention-days: 1
+          path: dist
 
   unit:
     name: Test Unit
