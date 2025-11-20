@@ -11,20 +11,20 @@ export default defineConfig({
     tailwindcss(),
     react(),
     dts({
-      include: ["lib"],
+      include: ["src"],
       tsconfigPath: "./tsconfig.app.json",
       rollupTypes: true,
     }),
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./lib"),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
   build: {
     copyPublicDir: false,
     lib: {
-      entry: path.resolve(__dirname, "lib/main.ts"),
+      entry: path.resolve(__dirname, "src/main.ts"),
       formats: ["es"],
     },
     rollupOptions: {
