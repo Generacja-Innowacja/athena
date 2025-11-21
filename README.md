@@ -1,8 +1,12 @@
-# Vite Project Boilerplate
+![project header](.github/image/header.png)
+
+# Athena
+
+Athena is a component library used by Generacja Innowacja's front-end projects.
 
 ## Repository contents
 
-Repository contains boilerplate project using Vite.
+Repository contains project made using Vite with library mode.
 
 Project is using tools in versions listed below:
 
@@ -22,6 +26,12 @@ Project's main dependencies are listed below.
 | Vitest       | ^4.x    |
 | Storybook    | ^10.x   |
 
+External dependencies:
+
+| Dependency   | Version |
+| -------      | ------- |
+| shadcn       | latest  |
+
 ### Package descriptions
 
 - **Vite** - Next-generation frontend build tool providing fast development experience with instant HMR and optimized production builds
@@ -29,10 +39,18 @@ Project's main dependencies are listed below.
 - **Tailwind CSS** - Utility-first CSS framework for rapid UI development
 - **Vitest** - Fast unit testing framework powered by Vite
 - **Storybook** - UI development environment and playground for building, previewing, and testing isolated components interactively
+- **shadcn** - Toolkit for extracting and managing component code patterns, used for generating modern React components
+
+### Meet the standards
+
+Before you start, make sure you have read and understood the following documents:
+
+- [GI Tech Standards](https://github.com/Generacja-Innowacja/gi-tech-standards)
+- [Before start GitHub configuration](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/github/INDEX.md)
 
 ## Infrastructure
 
-This is a frontend-only boilerplate that runs locally using Vite development server.
+This is a frontend-only library that runs locally using Vite development server.
 
 ## Setting project up
 
@@ -57,7 +75,7 @@ This app uses Node.js and Yarn package manager. In order to set up project, foll
 4. Navigate to the project directory:
 
    ```shell
-   cd vite-project-boilerplate
+   cd athena
    ```
 
 5. Install dependencies using Yarn:
@@ -68,10 +86,10 @@ This app uses Node.js and Yarn package manager. In order to set up project, foll
 
 ## Running the project
 
-To start the development server:
+To start storybook development server:
 
 ```bash
-yarn dev
+yarn storybook
 ```
 
 Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
@@ -87,6 +105,18 @@ yarn lint:fix         # Fix linting issues automatically
 yarn storybook        # Run Storybook in development mode
 yarn storybook:build  # Build Storybook for production
 ```
+
+## How to create new components?
+
+1. Find a matching `shadcn` component in the [shadcn components library](https://ui.shadcn.com/docs/components)
+
+2. Create a new component with use of `shadcn` and `npx`
+
+    Example: `npx shadcn@latest add button`
+
+3. Adjust component structure to [the standard](https://github.com/Generacja-Innowacja/gi-tech-standards/blob/main/docs/frontend/conventions/COMPONENT_STRUCTURE.md)
+
+4. Add unit tests and storybook stories
 
 ## Build
 
@@ -107,7 +137,7 @@ yarn test:coverage     # Run tests with coverage
 
 ## Linting
 
-This boilerplate uses BiomeJS for code linting and formatting. Biome is a fast, all-in-one toolchain that replaces ESLint, Prettier, and other tools.
+This library uses BiomeJS for code linting and formatting. Biome is a fast, all-in-one toolchain that replaces ESLint, Prettier, and other tools.
 
 - **Linter**: BiomeJS provides fast linting with TypeScript support
 - **Formatter**: Built-in code formatter with consistent style
@@ -124,7 +154,7 @@ The project is configured with custom linting rules in `biome.json`, including c
 
 ## Visual testing
 
-This boilerplate uses Storybook for visual testing and component development. Storybook provides an isolated environment to develop, test, and document UI components independently.
+This library uses Storybook for visual testing and component development. Storybook provides an isolated environment to develop, test, and document UI components independently.
 
 - **Component Development**: Build and test components in isolation
 - **Visual Testing**: Preview components with different props and states
