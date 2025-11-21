@@ -73,7 +73,7 @@
   "exports": {
     ".": {
       "import": "./dist/athena.js",
-      "require": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts"
     },
     "./athena.css": "./dist/athena.css"
   }
