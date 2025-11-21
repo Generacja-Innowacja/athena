@@ -92,7 +92,7 @@ To start storybook development server:
 yarn storybook
 ```
 
-Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+Open [http://localhost:6006](http://localhost:6006) with your browser to see the result.
 
 ## Available scripts
 
