@@ -118,6 +118,8 @@ yarn storybook:build  # Build Storybook for production
 
 4. Add unit tests and storybook stories
 
+5. Export new component in the [main.ts file](src\main.ts)
+
 ## Build
 
 This project uses Vite for building the library. The build process generates optimized static assets for production deployment.
