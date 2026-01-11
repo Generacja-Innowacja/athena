@@ -43,7 +43,7 @@ describe("<Switch />", () => {
     it("should call onCheckedChange handler when clicked", () => {
       const handleChange = vi.fn();
       render(
-        <Switch onCheckedChange={handleChange} aria-label="Toggle switch" />
+        <Switch onCheckedChange={handleChange} aria-label="Toggle switch" />,
       );
       const switchElement = screen.getByRole("switch");
       fireEvent.click(switchElement);
@@ -74,7 +74,7 @@ describe("<Switch />", () => {
           onCheckedChange={handleChange}
           disabled
           aria-label="Disabled switch"
-        />
+        />,
       );
       const switchElement = screen.getByRole("switch");
       fireEvent.click(switchElement);
