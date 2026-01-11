@@ -41,6 +41,21 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@theme {
+  --color-gi-dark-primary: #001e24;
+  --color-gi-primary: #004554;
+  --color-gi-light-primary: #005669;
+  --color-gi-secondary: #007994;
+  --color-gi-dark-gray: #324c52;
+  --color-gi-gray: #98a5a8;
+  --color-gi-dark-ash: #d3d9da;
+  --color-gi-ash: #ecf0f2;
+  --color-gi-red: #e43235;
+  --color-gi-green: #489c21;
+  --color-gi-orange: #e19a26;
+  --color-gi-blue: #3279e4;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
