@@ -2,29 +2,29 @@ import { jsx as v, jsxs as L } from "react/jsx-runtime";
 import * as s from "react";
 import { twMerge as M } from "tailwind-merge";
 import "react-dom";
-function E(e, n) {
+function k(e, n) {
   if (typeof e == "function")
     return e(n);
   e != null && (e.current = n);
 }
-function k(...e) {
+function E(...e) {
   return (n) => {
     let t = !1;
     const o = e.map((r) => {
-      const i = E(r, n);
+      const i = k(r, n);
       return !t && typeof i == "function" && (t = !0), i;
     });
     if (t)
       return () => {
         for (let r = 0; r < o.length; r++) {
           const i = o[r];
-          typeof i == "function" ? i() : E(e[r], null);
+          typeof i == "function" ? i() : k(e[r], null);
         }
       };
   };
 }
 function _(...e) {
-  return s.useCallback(k(...e), e);
+  return s.useCallback(E(...e), e);
 }
 var D = Symbol.for("react.lazy"), C = s[" use ".trim().toString()];
 function F(e) {
@@ -54,7 +54,7 @@ function q(e) {
     let { children: r, ...i } = t;
     if (N(r) && typeof C == "function" && (r = C(r._payload)), s.isValidElement(r)) {
       const a = G(r), c = X(i, r.props);
-      return r.type !== s.Fragment && (c.ref = o ? k(o, a) : a), s.cloneElement(r, c);
+      return r.type !== s.Fragment && (c.ref = o ? E(o, a) : a), s.cloneElement(r, c);
     }
     return s.Children.count(r) > 1 ? s.Children.only(null) : null;
   });
@@ -105,15 +105,15 @@ const P = (e) => typeof e == "boolean" ? `${e}` : e === 0 ? "0" : e, R = z, J = 
     return p === void 0 || (l[f] = p), l;
   }, {}), u = n == null || (o = n.compoundVariants) === null || o === void 0 ? void 0 : o.reduce((l, d) => {
     let { class: f, className: p, ...h } = d;
-    return Object.entries(h).every((b) => {
-      let [m, g] = b;
-      return Array.isArray(g) ? g.includes({
+    return Object.entries(h).every((m) => {
+      let [b, y] = m;
+      return Array.isArray(y) ? y.includes({
         ...i,
         ...c
-      }[m]) : {
+      }[b]) : {
         ...i,
         ...c
-      }[m] === g;
+      }[b] === y;
     }) ? [
       ...l,
       f,
@@ -152,7 +152,7 @@ const Q = J(
     }
   }
 );
-function Ee({
+function ke({
   className: e,
   variant: n,
   size: t,
@@ -180,13 +180,13 @@ function te(e, n = []) {
     const c = s.createContext(a), u = t.length;
     t = [...t, a];
     const l = (f) => {
-      const { scope: p, children: h, ...b } = f, m = p?.[e]?.[u] || c, g = s.useMemo(() => b, Object.values(b));
-      return /* @__PURE__ */ v(m.Provider, { value: g, children: h });
+      const { scope: p, children: h, ...m } = f, b = p?.[e]?.[u] || c, y = s.useMemo(() => m, Object.values(m));
+      return /* @__PURE__ */ v(b.Provider, { value: y, children: h });
     };
     l.displayName = i + "Provider";
     function d(f, p) {
-      const h = p?.[e]?.[u] || c, b = s.useContext(h);
-      if (b) return b;
+      const h = p?.[e]?.[u] || c, m = s.useContext(h);
+      if (m) return m;
       if (a !== void 0) return a;
       throw new Error(`\`${f}\` must be used within \`${i}\``);
     }
@@ -314,7 +314,7 @@ function ue(e) {
     const { children: r, ...i } = t;
     if (s.isValidElement(r)) {
       const a = ve(r), c = pe(i, r.props);
-      return r.type !== s.Fragment && (c.ref = o ? k(o, a) : a), s.cloneElement(r, c);
+      return r.type !== s.Fragment && (c.ref = o ? E(o, a) : a), s.cloneElement(r, c);
     }
     return s.Children.count(r) > 1 ? s.Children.only(null) : null;
   });
@@ -363,7 +363,7 @@ var he = [
     return typeof window < "u" && (window[Symbol.for("radix-ui")] = !0), /* @__PURE__ */ v(u, { ...c, ref: i });
   });
   return o.displayName = `Primitive.${n}`, { ...e, [n]: o };
-}, {}), x = "Switch", [be] = te(x), [me, ge] = be(x), O = s.forwardRef(
+}, {}), x = "Switch", [me] = te(x), [be, ye] = me(x), O = s.forwardRef(
   (e, n) => {
     const {
       __scopeSwitch: t,
@@ -376,39 +376,39 @@ var he = [
       onCheckedChange: l,
       form: d,
       ...f
-    } = e, [p, h] = s.useState(null), b = _(n, (S) => h(S)), m = s.useRef(!1), g = p ? d || !!p.closest("form") : !0, [y, W] = oe({
+    } = e, [p, h] = s.useState(null), m = _(n, (S) => h(S)), b = s.useRef(!1), y = p ? d || !!p.closest("form") : !0, [g, W] = oe({
       prop: r,
       defaultProp: i ?? !1,
       onChange: l,
       caller: x
     });
-    return /* @__PURE__ */ L(me, { scope: t, checked: y, disabled: c, children: [
+    return /* @__PURE__ */ L(be, { scope: t, checked: g, disabled: c, children: [
       /* @__PURE__ */ v(
         V.button,
         {
           type: "button",
           role: "switch",
-          "aria-checked": y,
+          "aria-checked": g,
           "aria-required": a,
-          "data-state": B(y),
+          "data-state": B(g),
           "data-disabled": c ? "" : void 0,
           disabled: c,
           value: u,
           ...f,
-          ref: b,
+          ref: m,
           onClick: ee(e.onClick, (S) => {
-            W((H) => !H), g && (m.current = S.isPropagationStopped(), m.current || S.stopPropagation());
+            W((H) => !H), y && (b.current = S.isPropagationStopped(), b.current || S.stopPropagation());
           })
         }
       ),
-      g && /* @__PURE__ */ v(
+      y && /* @__PURE__ */ v(
         T,
         {
           control: p,
-          bubbles: !m.current,
+          bubbles: !b.current,
           name: o,
           value: u,
-          checked: y,
+          checked: g,
           required: a,
           disabled: c,
           form: d,
@@ -421,7 +421,7 @@ var he = [
 O.displayName = x;
 var I = "SwitchThumb", j = s.forwardRef(
   (e, n) => {
-    const { __scopeSwitch: t, ...o } = e, r = ge(I, t);
+    const { __scopeSwitch: t, ...o } = e, r = ye(I, t);
     return /* @__PURE__ */ v(
       V.span,
       {
@@ -434,7 +434,7 @@ var I = "SwitchThumb", j = s.forwardRef(
   }
 );
 j.displayName = I;
-var ye = "SwitchBubbleInput", T = s.forwardRef(
+var ge = "SwitchBubbleInput", T = s.forwardRef(
   ({
     __scopeSwitch: e,
     control: n,
@@ -451,8 +451,8 @@ var ye = "SwitchBubbleInput", T = s.forwardRef(
         "checked"
       ).set;
       if (u !== t && h) {
-        const b = new Event("click", { bubbles: o });
-        h.call(d, t), d.dispatchEvent(b);
+        const m = new Event("click", { bubbles: o });
+        h.call(d, t), d.dispatchEvent(m);
       }
     }, [u, t, o]), /* @__PURE__ */ v(
       "input",
@@ -475,7 +475,7 @@ var ye = "SwitchBubbleInput", T = s.forwardRef(
     );
   }
 );
-T.displayName = ye;
+T.displayName = ge;
 function B(e) {
   return e ? "checked" : "unchecked";
 }
@@ -489,7 +489,7 @@ function Pe({
     {
       "data-slot": "switch",
       className: w(
-        "peer data-[state=checked]:bg-gi-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 dark:data-[state=unchecked]:bg-input/80 inline-flex h-6 w-11 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
+        "peer data-[state=checked]:bg-gi-primary data-[state=unchecked]:bg-input focus-visible:border-ring focus-visible:ring-ring/50 inline-flex h-6 w-11 shrink-0 items-center rounded-full border border-transparent shadow-xs transition-all outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
         e
       ),
       ...n,
@@ -498,7 +498,7 @@ function Pe({
         {
           "data-slot": "switch-thumb",
           className: w(
-            "bg-background dark:data-[state=unchecked]:bg-foreground dark:data-[state=checked]:bg-primary-foreground pointer-events-none block size-5 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[22px] data-[state=unchecked]:translate-x-0"
+            "bg-background pointer-events-none block size-5 rounded-full ring-0 transition-transform data-[state=checked]:translate-x-[21px] data-[state=unchecked]:translate-x-px"
           )
         }
       )
@@ -506,7 +506,7 @@ function Pe({
   );
 }
 export {
-  Ee as Button,
+  ke as Button,
   Pe as Switch,
   Q as buttonVariants
 };
