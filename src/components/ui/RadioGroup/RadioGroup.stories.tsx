@@ -36,6 +36,11 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
+  args: {
+    defaultValue: "item-1",
+    orientation: "vertical"
+  },
+
   render: (args) => (
     <RadioGroup defaultValue="option-one" {...args}>
       <div className="flex items-center space-x-2">
@@ -57,5 +62,5 @@ export const Default: Story = {
         </label>
       </div>
     </RadioGroup>
-  ),
+  )
 };
