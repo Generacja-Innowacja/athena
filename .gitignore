@@ -9,6 +9,7 @@ lerna-debug.log*
 
 node_modules
 *.local
+yarn.lock
 
 # Editor directories and files
 .vscode/*
