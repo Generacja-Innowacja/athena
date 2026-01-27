@@ -33,6 +33,7 @@ node_modules
 
 # Vite
 /build
+/dist
 
 # Vitest
 /coverage

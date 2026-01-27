@@ -38,7 +38,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     defaultValue: "item-1",
-    orientation: "vertical"
+    orientation: "vertical",
   },
 
   render: (args) => (
@@ -62,5 +62,5 @@ export const Default: Story = {
         </label>
       </div>
     </RadioGroup>
-  )
+  ),
 };

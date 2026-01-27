@@ -10,7 +10,7 @@ describe("<RadioGroupItem />", () => {
         <RadioGroupItem value="item-1" />
       </RadioGroup>,
     );
-    const item = screen.getByRole("radio", { name: "" }); 
+    const item = screen.getByRole("radio", { name: "" });
     expect(item).toBeInTheDocument();
     expect(item).toHaveAttribute("value", "item-1");
     expect(item).toHaveAttribute("data-slot", "radio-group-item");
