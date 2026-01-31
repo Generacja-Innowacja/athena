@@ -1,6 +1,7 @@
 import "./index.css";
 
 export { Button, buttonVariants } from "./components/ui/Button/Button";
+export { Checkbox } from "./components/ui/Checkbox/Checkbox";
 export {
   InfoMessage,
   infoMessageVariants,
