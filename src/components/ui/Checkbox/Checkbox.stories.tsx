@@ -8,6 +8,8 @@ const meta = {
   argTypes: {
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
+    label: { control: "text" },
+    secondaryLabel: { control: "text" },
   },
 } satisfies Meta<typeof Checkbox>;
 
@@ -19,6 +21,8 @@ export const Default: Story = {
   args: {
     checked: false,
     id: "item-1",
+    label: "Accept terms and condition",
+    secondaryLabel: "You agree to our Terms of Service and Privacy Policy.",
   },
 };
 
@@ -28,5 +32,6 @@ export const Disabled: Story = {
     checked: true,
     disabled: true,
     id: "item-1",
+    label: "Disabled checkbox",
   },
 };
