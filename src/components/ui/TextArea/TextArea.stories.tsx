@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Textarea } from "./TextArea";
+import { Textarea, type TextAreaProps } from "./TextArea";
+import { useArgs } from "storybook/internal/preview-api";
+
 
 const meta = {
   title: "TextArea",
@@ -11,6 +13,7 @@ const meta = {
     variant: {
       control: "select",
       options: ["default", "hover", "focus", "disabled", "error"],
+      value: { control: "text" }
     },
   },
   tags: ["autodocs"],
@@ -21,7 +24,30 @@ const meta = {
     characterLimitVisibility: true,
     label: "Label",
     isRequired: false,
+    isError: false,
+    errorText: "Error Text"
+
   },
+  render: (initialArgs) => {
+    const [{ value = "" }, updateArgs] = useArgs<TextAreaProps>();
+
+    function handleChange(nextValue: string) {
+      updateArgs({ value: nextValue });
+
+      if (typeof initialArgs.onChange === "function") {
+        initialArgs.onChange(nextValue);
+      }
+    }
+
+    return (
+      <Textarea
+        {...initialArgs}
+        value={value}
+        onChange={handleChange}
+      />
+    );
+  },
+
 } satisfies Meta<typeof Textarea>;
 
 export default meta;
