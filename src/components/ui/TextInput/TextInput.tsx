@@ -82,20 +82,14 @@ function TextInput({
           <span className="text-sm text-muted-foreground">{prefix}</span>
         )}
 
-        <Input
-          id={inputId}
-          type={type}
-          value={value}
-          onChange={handleChange}
-          placeholder={placeholder}
-          required={required}
-          disabled={disabled}
-          data-test-id={dataTestId}
-          aria-invalid={isError || undefined}
-          className={cn("flex-1 border-0 bg-transparent px-0 py-0", className)}
-          {...inputProps}
-        />
-
+      <div
+        className={cn(
+          "flex items-center border rounded-md",
+          disabled
+          ? "bg-muted cursor-not-allowed border-muted"
+          : "hover:border-primary",
+       )}
+   >
         {suffix && (
           <span className="text-sm text-muted-foreground">{suffix}</span>
         )}
