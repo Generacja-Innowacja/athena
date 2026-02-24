@@ -43,7 +43,9 @@ function TextInput({
   ...inputProps
 }: TextInputProps) {
   const inputId = id ?? React.useId();
-  const showError = Boolean(isError && errorText);
+  const message = isError
+  ? errorText ?? null
+  : helper;
   const disabled = isDisabled ?? inputProps.disabled;
   const required = isRequired ?? inputProps.required;
 
