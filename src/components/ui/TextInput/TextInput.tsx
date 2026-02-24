@@ -18,9 +18,6 @@ type TextInputProps = {
   isError?: boolean;
   isRequired?: boolean;
   isDisabled?: boolean;
-  /**
-   * Optional class name for the outer wrapper element.
-   */
   wrapperClassName?: string;
 } & Omit<React.ComponentProps<"input">, "value" | "onChange" | "placeholder">;
 
