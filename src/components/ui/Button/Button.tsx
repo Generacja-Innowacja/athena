@@ -1,5 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
+import { Loader2 } from "lucide-react"; 
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -29,7 +30,7 @@ const buttonVariants = cva(
         "icon-lg": "size-10",
       },
       isIconButton: {
-        true: "p-0", 
+        true: "p-0",
       },
     },
     compoundVariants: [
@@ -61,14 +62,28 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, leftIcon, rightIcon, isLoading, children, disabled, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      size,
+      asChild = false,
+      leftIcon,
+      rightIcon,
+      isLoading,
+      children,
+      disabled,
+      ...props
+    },
+    ref,
+  ) => {
     
     if (asChild) {
       return (
         <Slot
           className={cn(buttonVariants({ variant, size, className }))}
           ref={ref}
-          data-slot="button" // <--- DODAJ TO TUTAJ
+          data-slot="button"
           {...props}
         >
           {children}
@@ -80,27 +95,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={cn(
           buttonVariants({ variant, size, className }),
-          isLoading && "opacity-70 cursor-wait"
+          isLoading && "opacity-70 cursor-wait",
         )}
         ref={ref}
         disabled={disabled || isLoading}
         data-slot="button"
         {...props}
       >
+
         {isLoading ? (
-          <svg 
-            className="animate-spin" 
-            width="16" 
-            height="16" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="2.5" 
-            strokeLinecap="round" 
-            strokeLinejoin="round"
-          >
-            <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-          </svg>
+          <Loader2 className="animate-spin" />
         ) : (
           leftIcon
         )}
@@ -108,13 +112,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {!isLoading && rightIcon}
       </button>
     );
-  }
+  },
 );
 Button.displayName = "Button";
 
 export { Button, buttonVariants };
-
-
-
-
-
