@@ -68,7 +68,7 @@ export const WithIcons: Story = {
     onChange: () => {},
     label: "Search",
     placeholder: "Search...",
-    LeftIcon: <Search className="size-4" />,
+    leftIcon: <Search className="size-4" />,
     helper: "Type to search",
   },
 };
