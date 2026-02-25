@@ -167,4 +167,3 @@ describe("<Input />", () => {
     expect(input).toHaveAttribute("type", "email");
   });
 });
-
