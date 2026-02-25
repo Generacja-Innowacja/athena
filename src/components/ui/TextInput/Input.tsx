@@ -3,7 +3,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Input } from "../input";
 
-type TextInputProps = {
+type InputProps = {
   dataTestId?: string;
   value: string;
   onChange: (value: string) => void;
@@ -21,7 +21,7 @@ type TextInputProps = {
   wrapperClassName?: string;
 } & Omit<React.ComponentProps<"input">, "value" | "onChange" | "placeholder">;
 
-function TextInput({
+function Input({
   dataTestId,
   value,
   onChange,
@@ -41,7 +41,7 @@ function TextInput({
   className,
   type = "text",
   ...inputProps
-}: TextInputProps) {
+}: InputProps) {
   const generatedId = React.useId();
   const inputId = id ?? generatedId;
 
@@ -119,4 +119,4 @@ function TextInput({
   );
 }
 
-export { TextInput };
+export { Input };
