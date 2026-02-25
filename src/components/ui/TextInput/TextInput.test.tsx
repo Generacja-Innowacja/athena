@@ -2,15 +2,15 @@ import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import * as React from "react";
 
-import { TextInput } from "./TextInput";
+import { TextInput } from "./Input";
 
-describe("<TextInput />", () => {
+describe("<Input />", () => {
   const setup = (
-    overrideProps?: Partial<React.ComponentProps<typeof TextInput>>,
+    overrideProps?: Partial<React.ComponentProps<typeof Input>>,
   ) => {
     const onChange = vi.fn();
 
-    const props: React.ComponentProps<typeof TextInput> = {
+    const props: React.ComponentProps<typeof Input> = {
       value: "",
       onChange,
       label: "Label",
@@ -18,7 +18,7 @@ describe("<TextInput />", () => {
       ...overrideProps,
     };
 
-    render(<TextInput {...props} />);
+    render(<Input {...props} />);
 
     const input = screen.getByPlaceholderText(
       props.placeholder ?? "Placeholder",
@@ -63,7 +63,7 @@ describe("<TextInput />", () => {
     function Controlled() {
       const [value, setValue] = React.useState("");
       return (
-        <TextInput
+        <Input
           label="Label"
           placeholder="Placeholder"
           value={value}
