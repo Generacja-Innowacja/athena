@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { Search } from "lucide-react";
 import * as React from "react";
 
-import { TextInput } from "./TextInput";
+import { Input } from "./Input";
 
 const meta = {
-  title: "TextInput",
-  component: TextInput,
+  title: "Input",
+  component: Input,
   tags: ["autodocs"],
   argTypes: {
     label: { control: "text" },
@@ -19,16 +19,16 @@ const meta = {
     prefix: { control: "text" },
     suffix: { control: "text" },
   },
-} satisfies Meta<typeof TextInput>;
+} satisfies Meta<typeof Input>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-function ControlledTemplate(args: React.ComponentProps<typeof TextInput>) {
+function ControlledTemplate(args: React.ComponentProps<typeof Input>) {
   const [value, setValue] = React.useState(args.value ?? "");
 
   return (
-    <TextInput
+    <Input
       {...args}
       value={value}
       onChange={setValue}
