@@ -123,8 +123,12 @@ describe("<Button />", () => {
 
   describe("when asChild is provided as a prop", () => {
     it("should render as child element when asChild is true", () => {
-      render(<Button asChild><a href="/test">Link Button</a></Button>);
-      
+      render(
+        <Button asChild>
+          <a href="/test">Link Button</a>
+        </Button>,
+      );
+
       const link = screen.getByRole("link", { name: "Link Button" });
       expect(link).toBeInTheDocument();
       expect(link).toHaveAttribute("data-slot", "button");
