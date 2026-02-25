@@ -38,14 +38,14 @@ describe("<TextArea />", () => {
     });
 
     it("applies disabled label style when variant is disabled", () => {
-      render(<TextArea {...baseProps} label="Opis" variant="disabled" />);
+      render(<TextArea {...baseProps} label="Opis" disabled />);
 
       const label = screen.getByText("Opis", { selector: "p" });
       expect(label).toHaveClass("text-gi-primary/50");
     });
 
     it("applies error label style when variant is error", () => {
-      render(<TextArea {...baseProps} label="Opis" variant="error" />);
+      render(<TextArea {...baseProps} label="Opis" isError />);
 
       const label = screen.getByText("Opis", { selector: "p" });
       expect(label).toHaveClass("text-gi-primary");

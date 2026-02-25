@@ -8,22 +8,17 @@ const meta = {
   parameters: {
     layout: "centered",
   },
-  argTypes: {
-    variant: {
-      control: "select",
-      options: ["default", "disabled", "error"],
-      value: { control: "text" },
-    },
-  },
+  argTypes: {},
   tags: ["autodocs"],
   args: {
-    variant: "default",
     placeholder: "Placeholder",
+    value: "Test text",
     characterLimit: 500,
     characterLimitVisibility: true,
     label: "Label",
     isRequired: false,
     isError: false,
+    disabled: false,
     errorText: "Error Text",
   },
   render: (initialArgs) => {
@@ -46,16 +41,15 @@ type Story = StoryObj<typeof TextArea>;
 
 export const Default: Story = {
   args: {
-    variant: "default",
   },
 };
 export const disabled: Story = {
   args: {
-    variant: "disabled",
+    disabled: true,
   },
 };
 export const error: Story = {
   args: {
-    variant: "error",
+    isError: true,
   },
 };

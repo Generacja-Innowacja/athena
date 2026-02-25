@@ -1,4 +1,4 @@
-import { cva, type VariantProps } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const TextAreaVariants = cva(
@@ -8,7 +8,7 @@ const TextAreaVariants = cva(
       variant: {
         default:
           "border-gi-primary/10 hover:border-gi-primary/20 focus:border-gi-primary/20 focus:outline-1 duration-300 ease-in-out",
-        disabled: "focus:ring-0 focus:outline-none cursor-not-allowed",
+        disabled: "focus:ring-0 focus:outline-none text-gi-gray cursor-not-allowed",
         error: "border-gi-red focus:ring-0 focus:outline-none",
       },
     },
@@ -17,8 +17,6 @@ const TextAreaVariants = cva(
     },
   },
 );
-
-type TextAreaVariant = VariantProps<typeof TextAreaVariants>["variant"];
 
 const labelVariants: Record<string, string> = {
   default: "text-gi-primary",
@@ -29,16 +27,15 @@ const labelVariants: Record<string, string> = {
 export interface TextAreaProps
   extends Omit<React.ComponentProps<"textarea">, "onChange"> {
   className?: string;
+  value?: string;
   characterLimitVisibility?: boolean;
   characterLimit?: number;
   label?: string;
+  disabled?: boolean;
   isRequired?: boolean;
   isError?: boolean;
   errorText?: string;
   helper?: React.ReactNode;
-  disabled?: boolean;
-  variant?: TextAreaVariant;
-  value?: string;
   onChange: (value: string) => void;
   placeholder?: string;
   dataTestId?: string;
@@ -46,7 +43,6 @@ export interface TextAreaProps
 
 export function TextArea({
   className,
-  variant,
   isError,
   label,
   disabled,
@@ -75,6 +71,7 @@ export function TextArea({
   const isFooterError = shouldShowErrorText;
   const shouldShowCounter =
     Boolean(characterLimitVisibility) && hasCharacterLimit;
+  const computedVariant = disabled ? "disabled" : isError ? "error" : "default"
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>): void {
     if (disabled) {
@@ -96,9 +93,9 @@ export function TextArea({
 
   return (
     <div>
-      <p className={cn("font-bold", labelVariants[variant ?? "default"])}>
+      <p className={cn("font-bold", labelVariants[computedVariant ?? "default"])}>
         {label}
-        {isRequired && <span className="text-red-500 ml-1 size-4">*</span>}
+        {isRequired && <span className="text-gi-red ml-1 size-4">*</span>}
         {""}
       </p>
       <textarea
@@ -115,7 +112,7 @@ export function TextArea({
               ? "disabled"
               : isError
                 ? "error"
-                : variant || "default",
+                : computedVariant || "default",
             className,
           }),
         )}
