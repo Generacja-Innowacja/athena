@@ -105,13 +105,10 @@ function TextInput({
         {showError ? (
           <span className="text-gi-red">{errorText}</span>
         ) : (
-          <>
-          {helper && <span className="text-gi-gray">{helper}</span>}
-          <div>
-          ...
-         </div>
-        </>
-     )}      
+          helper && <span className="text-gi-gray">{helper}</span>}
+        )}
+      </div>
+      </div>     
    );
-};
+}
 export { TextInput };
