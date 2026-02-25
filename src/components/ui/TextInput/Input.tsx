@@ -44,10 +44,9 @@ function Input({
   const generatedId = React.useId();
   const inputId = id ?? generatedId;
 
-  const showError = isError;
-disabled={isDisabled}
+  const showError = isError;   
 required={isRequired}
-
+disabled={isDisabled}
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -68,7 +67,7 @@ required={isRequired}
      className={cn(
        "flex items-center gap-2 rounded-md border border-input bg-background px-3 py-2 transition-colors duration-300 ease-in-out focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] hover:border-ring/70",
        isError && "border-gi-red",
-       disabled &&
+       isDisabled &&
          "bg-muted text-muted-foreground border-input/60 cursor-not-allowed hover:border-input/60 opacity-60",
      )}
    >
@@ -82,19 +81,19 @@ required={isRequired}
           <span className="text-sm text-muted-foreground">{prefix}</span>
         )}
 
-        <input 
-         id={inputId}
-         type={type}
-        value={value}
-       onChange={handleChange}
-       placeholder={placeholder}
-      required={required}
-       disabled={disabled}
-         data-test-id={dataTestId}
-         aria-invalid={isError || undefined}
-        className={cn("flex-1 border-0 bg-transparent px-0 py-0", className)}
-         {...inputProps}
-         />
+<input 
+  id={inputId}
+  type={type}
+  value={value}
+  onChange={handleChange}
+  placeholder={placeholder}
+  required={isRequired}
+  disabled={isDisabled}
+  data-test-id={dataTestId}
+  aria-invalid={isError || undefined}
+  className={cn("flex-1 border-0 bg-transparent px-0 py-0", className)}
+  {...inputProps}
+/>
                 {suffix && (
           <span className="text-sm text-muted-foreground">{suffix}</span>
         )}
