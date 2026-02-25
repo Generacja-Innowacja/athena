@@ -44,7 +44,7 @@ function Input({
   const generatedId = React.useId();
   const inputId = id ?? generatedId;
 
-  const showError = Boolean(isError && errorText);
+  const showError = isError;
   const disabled = isDisabled ?? inputProps.disabled;
   const required = isRequired ?? inputProps.required;
 
