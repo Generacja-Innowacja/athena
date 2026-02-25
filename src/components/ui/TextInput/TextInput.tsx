@@ -66,12 +66,14 @@ function TextInput({
         </label>
       )}
 
-      <div
-        className={cn(
-          "flex items-center gap-2 rounded-md border border-input bg-background px-3 py-2 transition-colors duration-300 ease-in-out focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] hover:border-ring/70",
-          isError && "border-gi-red",
-        )}
-      >
+   <div
+     className={cn(
+       "flex items-center gap-2 rounded-md border border-input bg-background px-3 py-2 transition-colors duration-300 ease-in-out focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] hover:border-ring/70",
+       isError && "border-gi-red",
+       disabled &&
+         "bg-muted text-muted-foreground border-input/60 cursor-not-allowed hover:border-input/60 opacity-60",
+     )}
+   >
         {LeftIcon && (
           <span className="flex items-center justify-center text-muted-foreground">
             {LeftIcon}
