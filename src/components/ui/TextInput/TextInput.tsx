@@ -94,7 +94,8 @@ function TextInput({
           aria-invalid={isError || undefined}
           className={cn("flex-1 border-0 bg-transparent px-0 py-0", className)}
           {...inputProps}
-        />      <div
+        />             
+        <div
         className={cn(
           "flex items-center gap-2 rounded-md border border-input bg-background px-3 py-2 transition-colors duration-300 ease-in-out focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] hover:border-ring/70",
           isError && "border-gi-red",
