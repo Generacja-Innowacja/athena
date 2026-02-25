@@ -29,10 +29,13 @@ type TextAreaVariant = VariantProps<typeof TextAreaVariants>["variant"];
 const labelVariants: Record<string, string> = {
   default: "text-gi-primary",
   error: "text-gi-primary",
+  hover: "text-gi-primary",
+  focus: "text-gi-primary",
   disabled: "text-gray-400",
 };
 
-export interface TextAreaProps {
+export interface TextAreaProps 
+  extends Omit<React.ComponentProps<"textarea">, "onChange">  {
   className?: string;
   characterLimitVisibility?: boolean;
   characterLimit?: number;
@@ -101,7 +104,7 @@ export function TextArea({
 
   return (
     <div>
-      <p className={cn("text-[16px]", labelVariants[variant ?? "default"])}>
+      <p className={cn("font-bold", labelVariants[variant ?? "default"])}>
         {label}
         {isRequired && <span className="text-red-500 ml-1 size-4">*</span>}
         {""}
@@ -114,7 +117,6 @@ export function TextArea({
         maxLength={hasCharacterLimit ? characterLimit : undefined}
         data-slot="textarea"
         data-test-id={dataTestId}
-       
         className={cn(
           TextAreaVariants({
             variant: isError ? "error" : "default",
