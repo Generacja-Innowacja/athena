@@ -49,7 +49,6 @@ function Input({
   const required = isRequired ?? inputProps.required;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (disabled) return;
     onChange(event.target.value);
   };
 
