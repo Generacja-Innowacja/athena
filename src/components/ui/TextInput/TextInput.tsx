@@ -101,11 +101,11 @@ function TextInput({
         )}
       </div>
 
-      <div className="mt-1 min-h-[1rem] text-xs leading-[1.2]">
+            <div className="mt-1 min-h-[1rem] text-xs leading-[1.2]">
         {showError ? (
           <span className="text-gi-red">{errorText}</span>
         ) : (
-          helper && <span className="text-gi-gray">{helper}</span>}
+          helper && <span className="text-gi-gray">{helper}</span>
         )}
       </div>
     </div>     
