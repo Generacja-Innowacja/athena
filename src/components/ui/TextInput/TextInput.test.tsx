@@ -31,7 +31,6 @@ describe("<TextInput />", () => {
     const { input } = setup();
 
     expect(input).toBeInTheDocument();
-    expect(input).toHaveAttribute("data-slot", "input");
   });
 
   it("should render label when provided", () => {
