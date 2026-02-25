@@ -45,8 +45,8 @@ function Input({
   const inputId = id ?? generatedId;
 
   const showError = isError;
-  const disabled = isDisabled 
-  const required = isRequired 
+disabled={isDisabled}
+required={isRequired}
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
