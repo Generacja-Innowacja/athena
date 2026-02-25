@@ -2,20 +2,16 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const TextAreaVariants = cva(
-  "px-3 py-2 w-[346px] h-[122px] text-gi-primary rounded-3xl  h-30.5 ",
+  "px-3 py-2 w-[346px] h-[122px] text-gi-primary rounded-3xl  h-30.5 border-[1px] ",
   {
     variants: {
       variant: {
         default:
-          "text-gi-primary border-[1px] border-gi-primary/10 focus:ring-0 focus:outline-none",
-        hover:
-          "text-gi-primary border-[1px] border-gi-primary/10 hover:border-gi-primary/20 transition-all duration-300 ease-in-out focus:ring-0 focus:outline-none",
-        focus:
-          "text-gi-primary border-[1px] border-gi-primary/10 hover:border-gi-primary/20 transition-all duration-300 ease-in-out focus:border-gi-primary/20 focus:ring-0 focus:outline-1",
+          "border-gi-primary/10 hover:border-gi-primary/20 focus:border-gi-primary/20 focus:outline-1 duration-300 ease-in-out",
         disabled:
-          "text-gi-primary border-[1px] focus:ring-0 focus:outline-none cursor-not-allowed",
+          "focus:ring-0 focus:outline-none cursor-not-allowed",
         error:
-          "text-gi-primary border-[1px] border-gi-red focus:ring-0 focus:outline-none",
+          "border-gi-red focus:ring-0 focus:outline-none",
       },
     },
     defaultVariants: {
@@ -29,13 +25,11 @@ type TextAreaVariant = VariantProps<typeof TextAreaVariants>["variant"];
 const labelVariants: Record<string, string> = {
   default: "text-gi-primary",
   error: "text-gi-primary",
-  hover: "text-gi-primary",
-  focus: "text-gi-primary",
-  disabled: "text-gray-400",
+  disabled: "text-gi-primary/50",
 };
 
-export interface TextAreaProps 
-  extends Omit<React.ComponentProps<"textarea">, "onChange">  {
+export interface TextAreaProps
+  extends Omit<React.ComponentProps<"textarea">, "onChange"> {
   className?: string;
   characterLimitVisibility?: boolean;
   characterLimit?: number;

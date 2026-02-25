@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["default", "hover", "focus", "disabled", "error"],
+      options: ["default", "disabled", "error"],
       value: { control: "text" },
     },
   },
@@ -47,16 +47,6 @@ type Story = StoryObj<typeof TextArea>;
 export const Default: Story = {
   args: {
     variant: "default",
-  },
-};
-export const hover: Story = {
-  args: {
-    variant: "hover",
-  },
-};
-export const focus: Story = {
-  args: {
-    variant: "focus",
   },
 };
 export const disabled: Story = {
