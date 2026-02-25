@@ -18,6 +18,9 @@ type TextInputProps = {
   isError?: boolean;
   isRequired?: boolean;
   isDisabled?: boolean;
+  /**
+   * Optional class name for the outer wrapper element.
+   */
   wrapperClassName?: string;
 } & Omit<React.ComponentProps<"input">, "value" | "onChange" | "placeholder">;
 
@@ -42,10 +45,10 @@ function TextInput({
   type = "text",
   ...inputProps
 }: TextInputProps) {
-  const inputId = id ?? React.useId();
-  const message = isError
-  ? errorText ?? null
-  : helper;
+  const generatedId = React.useId();
+  const inputId = id ?? generatedId;
+
+  const showError = Boolean(isError && errorText);
   const disabled = isDisabled ?? inputProps.disabled;
   const required = isRequired ?? inputProps.required;
 
@@ -82,14 +85,20 @@ function TextInput({
           <span className="text-sm text-muted-foreground">{prefix}</span>
         )}
 
-      <div
-        className={cn(
-          "flex items-center border rounded-md",
-          disabled
-          ? "bg-muted cursor-not-allowed border-muted"
-          : "hover:border-primary",
-       )}
-   >
+        <Input
+          id={inputId}
+          type={type}
+          value={value}
+          onChange={handleChange}
+          placeholder={placeholder}
+          required={required}
+          disabled={disabled}
+          data-test-id={dataTestId}
+          aria-invalid={isError || undefined}
+          className={cn("flex-1 border-0 bg-transparent px-0 py-0", className)}
+          {...inputProps}
+        />
+
         {suffix && (
           <span className="text-sm text-muted-foreground">{suffix}</span>
         )}
@@ -101,14 +110,15 @@ function TextInput({
         )}
       </div>
 
-            <div className="mt-1 min-h-[1rem] text-xs leading-[1.2]">
+      <div className="mt-1 min-h-[1rem] text-xs leading-[1.2]">
         {showError ? (
           <span className="text-gi-red">{errorText}</span>
         ) : (
           helper && <span className="text-gi-gray">{helper}</span>
         )}
       </div>
-    </div>     
-   );
+    </div>
+  );
 }
+
 export { TextInput };
