@@ -107,9 +107,10 @@ function TextInput({
         ) : (
           helper && <span className="text-gi-gray">{helper}</span>
         )}
-      </div>
-    </div>
-  );
-}
+      return (
+  <div>
+    ...
+  </div>
+);
 
 export { TextInput };
