@@ -8,4 +8,5 @@ export {
 } from "./components/ui/InfoMessage/InfoMessage";
 export { RadioGroup } from "./components/ui/RadioGroup/RadioGroup";
 export { RadioGroupItem } from "./components/ui/RadioGroup/RadioGroupItem/RadioGroupItem";
+export { Section } from "./components/ui/Section/Section";
 export { Switch } from "./components/ui/Switch/Switch";

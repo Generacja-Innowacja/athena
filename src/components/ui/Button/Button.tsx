@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
+        danger:
           "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
           "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
@@ -28,7 +28,22 @@ const buttonVariants = cva(
         "icon-sm": "size-8",
         "icon-lg": "size-10",
       },
+      isIconButton: {
+        true: "p-0",
+      },
     },
+    compoundVariants: [
+      {
+        isIconButton: true,
+        size: "default",
+        className: "w-10 h-10",
+      },
+      {
+        isIconButton: true,
+        size: "sm",
+        className: "w-8 h-8",
+      },
+    ],
     defaultVariants: {
       variant: "default",
       size: "default",
@@ -36,24 +51,61 @@ const buttonVariants = cva(
   },
 );
 
+interface ButtonProps
+  extends React.ComponentProps<"button">,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  isLoading?: boolean;
+}
+
 function Button({
   className,
   variant,
   size,
   asChild = false,
+  leftIcon,
+  rightIcon,
+  isLoading = false,
+  children,
+  disabled,
   ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean;
-  }) {
+}: ButtonProps) {
   const Comp = asChild ? Slot : "button";
 
   return (
     <Comp
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
+      disabled={disabled || isLoading}
+      className={cn(
+        buttonVariants({ variant, size, className }),
+        isLoading && "opacity-70 cursor-wait",
+      )}
       {...props}
-    />
+    >
+      {isLoading ? (
+        <svg
+          className="animate-spin"
+          xmlns="http://www.w3.org/"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+        </svg>
+      ) : (
+        leftIcon
+      )}
+
+      {children}
+      {!isLoading && rightIcon}
+    </Comp>
   );
 }
 
