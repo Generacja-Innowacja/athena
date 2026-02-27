@@ -80,7 +80,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const isDisabled = disabled || isLoading;
 
-    if (asChild) {
+    if (asChild && React.isValidElement(children)) {
+      const child = children as React.ReactElement<{ children?: React.ReactNode; disabled?: boolean }>;
+
       return (
         <Slot
           className={cn(
@@ -90,34 +92,20 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           ref={ref}
           data-slot="button"
           {...props}
-          {...({ disabled: isDisabled } as any)}
         >
-          {React.isValidElement(children)
-            ? React.cloneElement(children as React.ReactElement<any>, {
-                children: (
-                  <>
-                    {isLoading ? (
-                      <Loader2 className="animate-spin" />
-                    ) : (
-                      leftIcon
-                    )}
-                    {(children as React.ReactElement<any>).props.children}
-                    {!isLoading && rightIcon}
-                  </>
-                ),
-              })
-            : children}
+          {React.cloneElement(child, {
+            disabled: isDisabled,
+            children: (
+              <>
+                {isLoading ? <Loader2 className="animate-spin" /> : leftIcon}
+                {child.props.children}
+                {!isLoading && rightIcon}
+              </>
+            ),
+          })}
         </Slot>
       );
     }
-
-    const content = (
-      <>
-        {isLoading ? <Loader2 className="animate-spin" /> : leftIcon}
-        {children}
-        {!isLoading && rightIcon}
-      </>
-    );
 
     return (
       <button
@@ -130,7 +118,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         data-slot="button"
         {...props}
       >
-        {content}
+        {isLoading ? <Loader2 className="animate-spin" /> : leftIcon}
+        {children}
+        {!isLoading && rightIcon}
       </button>
     );
   },
