@@ -104,7 +104,7 @@ function Input({
       </div>
 
       <div className="mt-1 min-h-[1rem] text-xs leading-[1.2]">
-        {showError ? (
+        {isError ? (
           <span className="text-gi-red">{errorText}</span>
         ) : (
           helper && <span className="text-gi-gray">{helper}</span>
