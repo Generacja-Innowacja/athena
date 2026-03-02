@@ -81,14 +81,11 @@ function Button({
       React.HTMLAttributes<HTMLElement> & { "data-slot"?: string }
     >;
 
-    return React.cloneElement(
-      child,
-      {
-        ...props,
-        "data-slot": "button",
-        className: cn(child.props.className, commonClasses),
-      },
-    );
+    return React.cloneElement(child, {
+      ...props,
+      "data-slot": "button",
+      className: cn(child.props.className, commonClasses),
+    });
   }
 
   return (
