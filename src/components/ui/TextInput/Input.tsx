@@ -42,9 +42,7 @@ function Input({
   ...inputProps
 }: InputProps) {
   const generatedId = React.useId();
-  const inputId = id ?? generatedId;
-
-  isError;   
+  const inputId = id ?? generatedId;   
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
