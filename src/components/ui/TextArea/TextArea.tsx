@@ -2,7 +2,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const TextAreaVariants = cva(
-  "px-3 py-2 w-[346px] h-[122px] text-gi-primary rounded-3xl  h-30.5 border-[1px] ",
+  "px-3 py-2 w-[346px] h-[122px] text-gi-primary rounded-3xl border-[1px] ",
   {
     variants: {
       variant: {
@@ -19,7 +19,8 @@ const TextAreaVariants = cva(
   },
 );
 
-const labelVariants: Record<string, string> = {
+type TextAreaVariant = "default" | "error" | "disabled";
+const labelVariants: Record<TextAreaVariant, string> = {
   default: "text-gi-primary",
   error: "text-gi-primary",
   disabled: "text-gi-primary/50",
@@ -111,11 +112,7 @@ export function TextArea({
         data-test-id={dataTestId}
         className={cn(
           TextAreaVariants({
-            variant: disabled
-              ? "disabled"
-              : isError
-                ? "error"
-                : computedVariant || "default",
+            variant: computedVariant,
             className,
           }),
         )}
