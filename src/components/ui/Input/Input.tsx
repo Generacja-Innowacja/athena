@@ -48,26 +48,27 @@ function Input({
   };
 
   return (
-    <div className={cn("flex flex-col gap-1", wrapperClassName)}>
+    <div className={cn("flex flex-col gap-1.5", wrapperClassName)} style={{ width: "236px" }}>
       {label && (
         <label
           htmlFor={inputId}
-          className="mb-1.5 text-sm font-medium leading-3.5 text-gi-primary"
+          className="text-sm font-medium leading-3.5 text-gi-primary"
         >
           {label}
           {isRequired && <span className="ml-0.5 text-gi-red">*</span>}
         </label>
       )}
 
-   <div
-     className={cn(
-       "flex items-center gap-2 rounded-md border border-input bg-background px-3 py-2 transition-colors duration-300 ease-in-out focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] hover:border-ring/70",
-       isError && "border-gi-red",
-       isDisabled &&
-         "bg-muted text-muted-foreground border-input/60 cursor-not-allowed hover:border-input/60 opacity-60",
-     )}
-   >
-        {LeftIcon && (
+      <div
+        className={cn(
+          "flex items-center gap-1.5 rounded-md border border-input bg-background px-3 py-2 transition-colors duration-300 ease-in-out focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] hover:border-ring/70",
+          isError && "border-gi-red",
+          isDisabled &&
+            "bg-muted text-muted-foreground border-input/60 cursor-not-allowed hover:border-input/60 opacity-60",
+        )}
+        style={{ height: "65px" }}
+      >
+     {LeftIcon && (
           <span className="flex items-center justify-center text-muted-foreground">
             {LeftIcon}
           </span>
@@ -76,21 +77,21 @@ function Input({
         {prefix && (
           <span className="text-sm text-muted-foreground">{prefix}</span>
         )}
-
-<input 
-  id={inputId}
-  type={type}
-  value={value}
-  onChange={handleChange}
-  placeholder={placeholder}
-  required={isRequired}
-  disabled={isDisabled}
-  data-test-id={dataTestId}
-  aria-invalid={isError || undefined}
-  className={cn("flex-1 border-0 bg-transparent px-0 py-0", className)}
-  {...inputProps}
-/>
-                {suffix && (
+ 
+       <input
+          id={inputId}
+          type={type}
+          value={value}
+          onChange={handleChange}
+          placeholder={placeholder}
+          required={isRequired}
+          disabled={isDisabled}
+          data-test-id={dataTestId}
+          aria-invalid={isError || undefined}
+          className={cn("flex-1 border-0 bg-transparent px-0 py-0", className)}
+          {...inputProps}
+        />
+        {suffix && (
           <span className="text-sm text-muted-foreground">{suffix}</span>
         )}
 
@@ -101,7 +102,7 @@ function Input({
         )}
       </div>
 
-      <div className="mt-1 min-h-[1rem] text-xs leading-[1.2]">
+      <div className="mt-1.5 min-h-[1rem] text-xs leading-[1.2]">
         {isError ? (
           <span className="text-gi-red">{errorText}</span>
         ) : (
