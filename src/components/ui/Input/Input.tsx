@@ -9,8 +9,8 @@ type InputProps = {
   label?: string;
   placeholder?: string;
   helper?: React.ReactNode;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
+  LeftIcon?: React.ReactNode;
+  RightIcon?: React.ReactNode;
   prefix?: string;
   suffix?: string;
   errorText?: string;
