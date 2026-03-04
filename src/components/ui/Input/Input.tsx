@@ -48,11 +48,11 @@ function Input({
   };
 
   return (
-    <div className={cn("flex flex-col gap-1.5", wrapperClassName)} style={{ width: "236px" }}>
+    <div className={cn("flex flex-col gap-1.5", wrapperClassName)} >
       {label && (
         <label
           htmlFor={inputId}
-          className="text-sm font-medium leading-3.5 text-gi-primary"
+          className="font-bold  leading-[1.2] text-gi-primary"
         >
           {label}
           {isRequired && <span className="ml-0.5 text-gi-red">*</span>}
