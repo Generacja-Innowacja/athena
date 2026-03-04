@@ -42,17 +42,17 @@ function Input({
   ...inputProps
 }: InputProps) {
   const generatedId = React.useId();
-  const inputId = id ?? generatedId;   
+  const inputId = id ?? generatedId;
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
 
   return (
-    <div className={cn("flex flex-col gap-1.5", wrapperClassName)} >
+    <div className={cn("flex flex-col gap-1.5 w-full", wrapperClassName)}>
       {label && (
         <label
           htmlFor={inputId}
-          className="font-bold  leading-[1.2] text-gi-primary"
+          className="text-base font-bold leading-[1.2] text-gi-primary"
         >
           {label}
           {isRequired && <span className="ml-0.5 text-gi-red">*</span>}
@@ -61,14 +61,13 @@ function Input({
 
       <div
         className={cn(
-          "flex items-center gap-1.5 rounded-md border border-input bg-background px-3 py-2 transition-colors duration-300 ease-in-out focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] hover:border-ring/70",
+          "flex items-center gap-2 rounded-[32px] border border-input bg-background px-4 py-2.5 transition-colors duration-300 ease-in-out focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] hover:border-ring/70",
           isError && "border-gi-red",
           isDisabled &&
             "bg-muted text-muted-foreground border-input/60 cursor-not-allowed hover:border-input/60 opacity-60",
         )}
-        style={{ height: "65px" }}
       >
-     {LeftIcon && (
+        {LeftIcon && (
           <span className="flex items-center justify-center text-muted-foreground">
             {LeftIcon}
           </span>
@@ -77,8 +76,8 @@ function Input({
         {prefix && (
           <span className="text-sm text-muted-foreground">{prefix}</span>
         )}
- 
-       <input
+
+        <input
           id={inputId}
           type={type}
           value={value}
@@ -102,7 +101,7 @@ function Input({
         )}
       </div>
 
-      <div className="mt-1.5 min-h-[1rem] text-xs leading-[1.2]">
+      <div className="mt-2 min-h-[1rem] text-xs leading-[1.2]">
         {isError ? (
           <span className="text-gi-red">{errorText}</span>
         ) : (
