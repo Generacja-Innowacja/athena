@@ -78,19 +78,19 @@ describe("<ProgressBar />", () => {
     it("should render regular size by default", () => {
       render(<ProgressBar value={50} />);
       const progressBar = screen.getByRole("progressbar");
-      expect(progressBar).toHaveClass("h-2");
+      expect(progressBar).toHaveClass("h-4");
     });
 
     it("should render small size", () => {
       render(<ProgressBar value={50} size="small" />);
       const progressBar = screen.getByRole("progressbar");
-      expect(progressBar).toHaveClass("h-1");
+      expect(progressBar).toHaveClass("h-2");
     });
 
     it("should render regular size when specified", () => {
       render(<ProgressBar value={50} size="regular" />);
       const progressBar = screen.getByRole("progressbar");
-      expect(progressBar).toHaveClass("h-2");
+      expect(progressBar).toHaveClass("h-4");
     });
   });
 
