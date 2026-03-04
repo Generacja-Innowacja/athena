@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { cn } from "@/lib/utils";
 
 type InputProps = {
@@ -48,7 +47,7 @@ function Input({
   };
 
   return (
-    <div className={cn("flex flex-col gap-1.5 w-full", wrapperClassName)}>
+    <div className={cn("flex flex-col gap-2 w-full", wrapperClassName)}>
       {label && (
         <label
           htmlFor={inputId}
@@ -61,7 +60,7 @@ function Input({
 
       <div
         className={cn(
-          "flex items-center gap-2 rounded-[32px] border border-input bg-background px-4 py-2.5 transition-colors duration-300 ease-in-out focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] hover:border-ring/70",
+          "flex items-center gap-2 rounded-[32px] border border-input bg-background px-4 py-3 transition-colors duration-300 ease-in-out focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] hover:border-ring/70",
           isError && "border-gi-red",
           isDisabled &&
             "bg-muted text-muted-foreground border-input/60 cursor-not-allowed hover:border-input/60 opacity-60",
@@ -87,7 +86,8 @@ function Input({
           disabled={isDisabled}
           data-test-id={dataTestId}
           aria-invalid={isError || undefined}
-          className={cn("flex-1 border-0 bg-transparent px-0 py-0", className)}
+          // px-0 py-0 ważne, aby input nie dodawał własnego paddingu do kontenera
+          className={cn("flex-1 border-0 bg-transparent px-0 py-0 focus:outline-none", className)}
           {...inputProps}
         />
         {suffix && (
