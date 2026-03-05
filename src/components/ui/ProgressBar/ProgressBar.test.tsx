@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
-import { ProgressBar } from "./ProgressBar";
+import { ProgressBar, progressBarFillVariants } from "./ProgressBar";
 
 describe("<ProgressBar />", () => {
   describe("when all provided props are valid", () => {
