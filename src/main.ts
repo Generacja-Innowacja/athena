@@ -9,3 +9,4 @@ export {
 export { RadioGroup } from "./components/ui/RadioGroup/RadioGroup";
 export { RadioGroupItem } from "./components/ui/RadioGroup/RadioGroupItem/RadioGroupItem";
 export { Switch } from "./components/ui/Switch/Switch";
+export { Modal } from "./components/ui/Modal/Modal";
