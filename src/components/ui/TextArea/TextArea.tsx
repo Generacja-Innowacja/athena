@@ -94,7 +94,7 @@ export function TextArea({
   );
 
   return (
-    <div>
+    <div className="flex flex-col gap-1.5">
       <p
         className={cn("font-bold", labelVariants[computedVariant ?? "default"])}
       >
