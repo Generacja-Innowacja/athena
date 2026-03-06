@@ -20,7 +20,7 @@ type InputProps = {
   wrapperClassName?: string;
 } & Omit<React.ComponentProps<"input">, "value" | "onChange" | "placeholder">;
 
-function Input({
+export function Input({
   dataTestId,
   value,
   onChange,
