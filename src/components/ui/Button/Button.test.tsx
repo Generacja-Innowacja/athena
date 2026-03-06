@@ -24,8 +24,8 @@ describe("<Button />", () => {
       expect(button).toBeInTheDocument();
     });
 
-    it("should render destructive variant", () => {
-      render(<Button variant="destructive">Destructive</Button>);
+    it("should render danger variant", () => {
+      render(<Button variant="danger">danger</Button>);
       const button = screen.getByRole("button");
       expect(button).toBeInTheDocument();
     });
@@ -128,6 +128,7 @@ describe("<Button />", () => {
           <a href="/test">Link Button</a>
         </Button>,
       );
+
       const link = screen.getByRole("link", { name: "Link Button" });
       expect(link).toBeInTheDocument();
       expect(link).toHaveAttribute("data-slot", "button");

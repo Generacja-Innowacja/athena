@@ -1,5 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
+import { Loader2 } from "lucide-react";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -10,7 +11,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive:
+        danger:
           "bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
           "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
@@ -28,7 +29,22 @@ const buttonVariants = cva(
         "icon-sm": "size-8",
         "icon-lg": "size-10",
       },
+      isIconButton: {
+        true: "p-0",
+      },
     },
+    compoundVariants: [
+      {
+        isIconButton: true,
+        size: "default",
+        className: "w-10 h-10",
+      },
+      {
+        isIconButton: true,
+        size: "sm",
+        className: "w-8 h-8",
+      },
+    ],
     defaultVariants: {
       variant: "default",
       size: "default",
@@ -36,25 +52,79 @@ const buttonVariants = cva(
   },
 );
 
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}: React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean;
-  }) {
-  const Comp = asChild ? Slot : "button";
-
-  return (
-    <Comp
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
-  );
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  isLoading?: boolean;
 }
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      isIconButton,
+      asChild = false,
+      leftIcon,
+      rightIcon,
+      isLoading,
+      children,
+      disabled,
+      ...props
+    },
+    ref,
+  ) => {
+    const isDisabled = disabled || isLoading;
+
+    if (asChild && React.isValidElement(children)) {
+      const child = children as React.ReactElement<{ children?: React.ReactNode; disabled?: boolean }>;
+
+      return (
+        <Slot
+          className={cn(
+            buttonVariants({ variant, size, isIconButton, className }),
+            isLoading && "opacity-70 cursor-wait",
+          )}
+          ref={ref}
+          data-slot="button"
+          {...props}
+        >
+          {React.cloneElement(child, {
+            disabled: isDisabled,
+            children: (
+              <>
+                {isLoading ? <Loader2 className="animate-spin" /> : leftIcon}
+                {child.props.children}
+                {!isLoading && rightIcon}
+              </>
+            ),
+          })}
+        </Slot>
+      );
+    }
+
+    return (
+      <button
+        className={cn(
+          buttonVariants({ variant, size, isIconButton, className }),
+          isLoading && "opacity-70 cursor-wait",
+        )}
+        ref={ref}
+        disabled={isDisabled}
+        data-slot="button"
+        {...props}
+      >
+        {isLoading ? <Loader2 className="animate-spin" /> : leftIcon}
+        {children}
+        {!isLoading && rightIcon}
+      </button>
+    );
+  },
+);
+Button.displayName = "Button";
 
 export { Button, buttonVariants };
