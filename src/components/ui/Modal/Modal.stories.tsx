@@ -8,8 +8,8 @@ const meta: Meta<typeof Modal> = {
   decorators: [
     (Story) => (
       <div className="w-[512px] h-[512px]">
-       <Story />
-       </div>
+        <Story />
+      </div>
     ),
   ],
   tags: ["autodocs"],

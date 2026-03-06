@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, it, expect, vi, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { Modal } from "./Modal";
 
 describe("Modal", () => {
@@ -27,7 +27,7 @@ describe("Modal", () => {
     render(
       <Modal {...baseProps} isOpen={false}>
         Hidden
-      </Modal>
+      </Modal>,
     );
 
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
@@ -37,7 +37,7 @@ describe("Modal", () => {
     render(
       <Modal {...baseProps} description="Modal description">
         Content
-      </Modal>
+      </Modal>,
     );
 
     expect(screen.getByText("Modal description")).toBeInTheDocument();
@@ -45,12 +45,9 @@ describe("Modal", () => {
 
   it("renders actions when provided", () => {
     render(
-      <Modal
-        {...baseProps}
-        actions={<button>Confirm</button>}
-      >
+      <Modal {...baseProps} actions={<button>Confirm</button>}>
         Content
-      </Modal>
+      </Modal>,
     );
 
     expect(screen.getByText("Confirm")).toBeInTheDocument();
@@ -59,13 +56,9 @@ describe("Modal", () => {
   it("calls onClose when close button is clicked", async () => {
     const onClose = vi.fn();
 
-    render(
-      <Modal {...baseProps} onClose={onClose}>
-        Content
-      </Modal>
-    );
+    render(<Modal {...baseProps} onClose={onClose} />);
 
-    const button = screen.getByRole("button");
+    const button = screen.getByRole("button", { name: /close dialog/i });
     await userEvent.click(button);
 
     expect(onClose).toHaveBeenCalledTimes(1);
@@ -75,20 +68,17 @@ describe("Modal", () => {
     render(
       <Modal {...baseProps} isClosable={false}>
         Content
-      </Modal>
+      </Modal>,
     );
 
-    expect(screen.queryByRole("button")).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: /close dialog/i }),
+    ).not.toBeInTheDocument();
   });
 
   it("calls onClose when clicking overlay", async () => {
     const onClose = vi.fn();
-
-    render(
-      <Modal {...baseProps} onClose={onClose}>
-        Content
-      </Modal>
-    );
+    render(<Modal {...baseProps} onClose={onClose} />);
 
     const overlay = screen.getByRole("dialog").parentElement!;
     await userEvent.click(overlay);
@@ -98,15 +88,8 @@ describe("Modal", () => {
 
   it("does not close when overlay clicked if isCloseOnOverlayClick=false", async () => {
     const onClose = vi.fn();
-
     render(
-      <Modal
-        {...baseProps}
-        onClose={onClose}
-        isCloseOnOverlayClick={false}
-      >
-        Content
-      </Modal>
+      <Modal {...baseProps} onClose={onClose} isCloseOnOverlayClick={false} />,
     );
 
     const overlay = screen.getByRole("dialog").parentElement!;
@@ -117,12 +100,7 @@ describe("Modal", () => {
 
   it("does not close when clicking inside modal", async () => {
     const onClose = vi.fn();
-
-    render(
-      <Modal {...baseProps} onClose={onClose}>
-        Content
-      </Modal>
-    );
+    render(<Modal {...baseProps} onClose={onClose} />);
 
     const modal = screen.getByRole("dialog");
     await userEvent.click(modal);
@@ -132,14 +110,9 @@ describe("Modal", () => {
 
   it("calls onClose when Escape key is pressed", () => {
     const onClose = vi.fn();
+    render(<Modal {...baseProps} onClose={onClose} />);
 
-    render(
-      <Modal {...baseProps} onClose={onClose}>
-        Content
-      </Modal>
-    );
-
-    fireEvent.keyDown(document, { key: "Escape" });
+    fireEvent.keyDown(screen.getByRole("dialog"), { key: "Escape" });
 
     expect(onClose).toHaveBeenCalledTimes(1);
   });
@@ -151,9 +124,7 @@ describe("Modal", () => {
   });
 
   it("restores body scroll when modal unmounts", () => {
-    const { unmount } = render(
-      <Modal {...baseProps}>Content</Modal>
-    );
+    const { unmount } = render(<Modal {...baseProps}>Content</Modal>);
 
     unmount();
 
@@ -162,16 +133,48 @@ describe("Modal", () => {
 
   it("applies data-test-id attribute", () => {
     render(
-      <Modal
-        {...baseProps}
-        dataTestId="modal-test"
-      >
+      <Modal {...baseProps} dataTestId="modal-test">
         Content
-      </Modal>
+      </Modal>,
     );
 
-    expect(
-      screen.getByTestId("modal-test")
-    ).toBeInTheDocument();
+    expect(screen.getByTestId("modal-test")).toBeInTheDocument();
+  });
+
+  it("traps focus inside modal with Tab and Shift+Tab", () => {
+    render(
+      <Modal
+        {...baseProps}
+        actions={
+          <>
+            <button>First</button>
+            <button>Second</button>
+          </>
+        }
+      >
+        <button>Inside</button>
+      </Modal>,
+    );
+
+    const closeButton = screen.getByRole("button", { name: /close dialog/i });
+    const secondAction = screen.getByText("Second");
+
+    // initial focus
+    expect(document.activeElement).toBe(closeButton);
+
+    // ustaw focus na ostatni element
+    secondAction.focus();
+    expect(document.activeElement).toBe(secondAction);
+
+    // Tab z ostatniego powinien wrócić na pierwszy
+    fireEvent.keyDown(screen.getByRole("dialog"), { key: "Tab" });
+    expect(document.activeElement).toBe(closeButton);
+
+    // Shift+Tab z pierwszego powinien przejść na ostatni
+    fireEvent.keyDown(screen.getByRole("dialog"), {
+      key: "Tab",
+      shiftKey: true,
+    });
+    expect(document.activeElement).toBe(secondAction);
   });
 });
