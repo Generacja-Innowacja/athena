@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { cn } from "@/lib/utils";
 
 type InputProps = {
@@ -41,73 +42,39 @@ function Input({
   ...inputProps
 }: InputProps) {
   const generatedId = React.useId();
-  const inputId = id ?? generatedId;
+  const inputId = id ?? generatedId;   
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
 
   return (
-    <div className={cn("flex flex-col gap-2 w-full", wrapperClassName)}>
+    <div className={cn("flex flex-col gap-1.5", wrapperClassName)} >
       {label && (
         <label
           htmlFor={inputId}
-          className="text-base font-bold leading-[1.2] text-gi-primary"
+          className="font-bold leading-[1.2] text-[#005F60]"
         >
           {label}
           {isRequired && <span className="ml-0.5 text-gi-red">*</span>}
         </label>
       )}
 
-      <div
+      <input
+        id={inputId}
+        type={type}
+        value={value}
+        onChange={handleChange}
+        placeholder={placeholder}
+        required={isRequired}
+        disabled={isDisabled}
+        data-test-id={dataTestId}
+        aria-invalid={isError || undefined}
         className={cn(
-          "flex items-center gap-2 rounded-[32px] border border-input bg-background px-4 py-3 transition-colors duration-300 ease-in-out focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] hover:border-ring/70",
-          isError && "border-gi-red",
-          isDisabled &&
-            "bg-muted text-muted-foreground border-input/60 cursor-not-allowed hover:border-input/60 opacity-60",
+          "h-8 rounded-full border border-[#D1D5DB] bg-transparent px-3 py-1 text-base text-[#005F60] placeholder:text-[#005F60] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D1D5DB] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          className
         )}
-      >
-        {LeftIcon && (
-          <span className="flex items-center justify-center text-muted-foreground">
-            {LeftIcon}
-          </span>
-        )}
-
-        {prefix && (
-          <span className="text-sm text-muted-foreground">{prefix}</span>
-        )}
-
-        <input
-          id={inputId}
-          type={type}
-          value={value}
-          onChange={handleChange}
-          placeholder={placeholder}
-          required={isRequired}
-          disabled={isDisabled}
-          data-test-id={dataTestId}
-          aria-invalid={isError || undefined}
-          // px-0 py-0 ważne, aby input nie dodawał własnego paddingu do kontenera
-          className={cn("flex-1 border-0 bg-transparent px-0 py-0 focus:outline-none", className)}
-          {...inputProps}
-        />
-        {suffix && (
-          <span className="text-sm text-muted-foreground">{suffix}</span>
-        )}
-
-        {RightIcon && (
-          <span className="flex items-center justify-center text-muted-foreground">
-            {RightIcon}
-          </span>
-        )}
-      </div>
-
-      <div className="mt-2 min-h-[1rem] text-xs leading-[1.2]">
-        {isError ? (
-          <span className="text-gi-red">{errorText}</span>
-        ) : (
-          helper && <span className="text-gi-gray">{helper}</span>
-        )}
-      </div>
+        {...inputProps}
+      />
     </div>
   );
 }
