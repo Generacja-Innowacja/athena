@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import { cn } from "@/lib/utils";
 
 type InputProps = {
@@ -42,13 +41,14 @@ export function Input({
   ...inputProps
 }: InputProps) {
   const generatedId = React.useId();
-  const inputId = id ?? generatedId;   
+  const inputId = id ?? generatedId;
+  
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
 
   return (
-    <div className={cn("flex flex-col gap-1.5", wrapperClassName)} >
+    <div className={cn("flex flex-col gap-1.5", wrapperClassName)}>
       {label && (
         <label
           htmlFor={inputId}
@@ -59,28 +59,37 @@ export function Input({
         </label>
       )}
 
-      <input
-        id={inputId}
-        type={type}
-        value={value}
-        onChange={handleChange}
-        placeholder={placeholder}
-        required={isRequired}
-        disabled={isDisabled}
-        data-test-id={dataTestId}
-        aria-invalid={isError || undefined}
-        className={cn(
-          "h-8 rounded-full border border-[#D1D5DB] bg-transparent px-3 py-1 text-base text-[#005F60] placeholder:text-[#005F60] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D1D5DB] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-          className
-        )}
-        {...inputProps} 
+      <div className="relative flex items-center">
+        {prefix && <span className="mr-2 text-[#005F60]">{prefix}</span>}
+        {LeftIcon && <div className="mr-2">{LeftIcon}</div>}
+        
+        <input
+          id={inputId}
+          type={type}
+          value={value}
+          onChange={handleChange}
+          placeholder={placeholder}
+          required={isRequired}
+          disabled={isDisabled}
+          data-test-id={dataTestId}
+          aria-invalid={isError || undefined}
+          className={cn(
+            "h-8 w-full rounded-full border border-[#D1D5DB] bg-transparent px-3 py-1 text-base text-[#005F60] placeholder:text-[#005F60] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D1D5DB] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            isError && "border-gi-red",
+            className
+          )}
+          {...inputProps}
         />
-      {helper && (
-      <p className="text-sm text-[#005F60]">
-    {helper}
-  </p>
-)}
 
-</div>
-);
+        {RightIcon && <div className="ml-2">{RightIcon}</div>}
+        {suffix && <span className="ml-2 text-[#005F60]">{suffix}</span>}
+      </div>
+
+      {isError && errorText ? (
+        <p className="text-sm text-gi-red">{errorText}</p>
+      ) : (
+        helper && <p className="text-sm text-[#005F60]">{helper}</p>
+      )}
+    </div>
+  );
 }
