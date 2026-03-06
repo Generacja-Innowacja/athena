@@ -73,10 +73,10 @@ function Input({
           "h-8 rounded-full border border-[#D1D5DB] bg-transparent px-3 py-1 text-base text-[#005F60] placeholder:text-[#005F60] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D1D5DB] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
           className
         )}
-        {...inputProps}
-      />
-    </div>
-  );
-}
-
-export { Input };
+        {...inputProps} 
+        />
+      {helper && (
+      <p className="text-sm text-[#005F60]">
+    {helper}
+  </p>
+)}
