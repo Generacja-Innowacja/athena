@@ -18,9 +18,26 @@ const meta: Meta<typeof Modal> = {
   },
   argTypes: {
     isOpen: { control: "boolean" },
+
     title: { control: "text" },
     description: { control: "text" },
     children: { control: "text" },
+
+    actions: {
+      control: "boolean",
+    },
+
+    actionVariant: {
+      control: "select",
+      options: [
+        "default",
+        "destructive",
+        "outline",
+        "secondary",
+        "ghost",
+        "link",
+      ],
+    },
   },
 };
 
@@ -31,8 +48,12 @@ export const Default: Story = {
   args: {
     isOpen: true,
     title: "Are you sure absolutely sure?",
-    description: "This action cannot be undone. This will permanently delete your account and remove your data from our servers.",
+    description:
+      "This action cannot be undone. This will permanently delete your account and remove your data from our servers.",
     children: "Are you sure you want to delete this item?",
+
+    actions: true,
+    actionVariant: "default",
   },
 
   render: function Render(args) {
