@@ -11,3 +11,4 @@ export { RadioGroup } from "./components/ui/RadioGroup/RadioGroup";
 export { RadioGroupItem } from "./components/ui/RadioGroup/RadioGroupItem/RadioGroupItem";
 export { Switch } from "./components/ui/Switch/Switch";
 export { TextArea } from "./components/ui/TextArea/TextArea";
+export { Input } from "./components/ui/Input/Input";
