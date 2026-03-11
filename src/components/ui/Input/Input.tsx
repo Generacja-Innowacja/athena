@@ -97,5 +97,4 @@ export function Input({
         helper && <p className="text-sm text-[#80A2A9]">{helper}</p>
       )}
     </div>
-   ); 
-   }
+   )}
