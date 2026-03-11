@@ -82,7 +82,7 @@ export function Input({
         />
 
         {RightIcon && <div className="ml-2">{RightIcon}</div>}
-        {suffix && <span className="ml-2 text-[#005F60]">{suffix}</span>}
+        {suffix && <span className="ml-2 text-[#80A2A9]">{suffix}</span>}
       </div>
 
       {isError && errorText ? (
