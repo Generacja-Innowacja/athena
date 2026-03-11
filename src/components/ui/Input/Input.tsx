@@ -74,7 +74,7 @@ export function Input({
           data-test-id={dataTestId}
           aria-invalid={isError || undefined}
           className={cn(
-            "h-8 w-full rounded-full border border-[#D1D5DB] bg-transparent px-3 py-1 text-base text-[#005F60] placeholder:text-[#005F60] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D1D5DB] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            "h-8 w-full rounded-full border border-[#D1D5DB] bg-transparent px-3 py-1 text-base text-[#005F60] placeholder:text-[#005F60] focus:border focus:border-primary/20 disabled:cursor-not-allowed disabled:opacity-50",
             isError && "border-gi-red",
             className
           )}
