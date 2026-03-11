@@ -1,7 +1,7 @@
 import { render, screen, within } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
-import { vi } from "vitest";
 import { Star } from "lucide-react";
+import { vi } from "vitest";
 
 import { Badge } from "./Badge";
 
@@ -19,9 +19,7 @@ vi.mock("../../../assets/icons/x-icon.svg", () => ({
 }));
 
 const getBadgeContainer = (text: string) => {
-  const container = screen
-    .getByText(text)
-    .closest('[data-slot="badge"]');
+  const container = screen.getByText(text).closest('[data-slot="badge"]');
   if (!container) {
     throw new Error(
       `Could not find element with [data-slot="badge"] for text "${text}".`,
@@ -183,15 +181,15 @@ describe("<Badge />", () => {
       );
       const container = getBadgeContainer("Custom");
       expect(within(container).getByTestId("custom-star")).toBeInTheDocument();
-      expect(within(container).queryByTestId("icon-info")).not.toBeInTheDocument();
+      expect(
+        within(container).queryByTestId("icon-info"),
+      ).not.toBeInTheDocument();
     });
   });
 
   describe("when isDismissible is true", () => {
     it("should render dismiss button", () => {
-      render(
-        <Badge isDismissible>Dismissible</Badge>,
-      );
+      render(<Badge isDismissible>Dismissible</Badge>);
       const container = getBadgeContainer("Dismissible");
       const dismissButton = within(container).getByRole("button", {
         name: "Dismiss",
@@ -216,7 +214,9 @@ describe("<Badge />", () => {
   describe("when isDismissible is false", () => {
     it("should not render dismiss button", () => {
       render(<Badge>Not dismissible</Badge>);
-      expect(screen.queryByRole("button", { name: "Dismiss" })).not.toBeInTheDocument();
+      expect(
+        screen.queryByRole("button", { name: "Dismiss" }),
+      ).not.toBeInTheDocument();
     });
   });
 });

@@ -11,7 +11,7 @@ const meta = {
   argTypes: {
     helper: {
       control: "text",
-  },
+    },
   },
   tags: ["autodocs"],
   args: {

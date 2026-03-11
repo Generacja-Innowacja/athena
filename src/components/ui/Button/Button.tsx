@@ -1,4 +1,3 @@
-import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
 import * as React from "react";
@@ -52,14 +51,13 @@ const buttonVariants = cva(
   },
 );
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-  isLoading?: boolean;
-}
+type ButtonProps = React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean;
+    leftIcon?: React.ReactNode;
+    rightIcon?: React.ReactNode;
+    isLoading?: boolean;
+  };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -71,7 +69,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       asChild = false,
       leftIcon,
       rightIcon,
-      isLoading,
+      isLoading = false,
       children,
       disabled,
       ...props
@@ -80,40 +78,36 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const isDisabled = disabled || isLoading;
 
-    if (asChild && React.isValidElement(children)) {
-      const child = children as React.ReactElement<{ children?: React.ReactNode; disabled?: boolean }>;
+    const commonClasses = cn(
+      buttonVariants({ variant, size, isIconButton, className }),
+      isLoading && "opacity-70 cursor-wait",
+    );
 
-      return (
-        <Slot
-          className={cn(
-            buttonVariants({ variant, size, isIconButton, className }),
-            isLoading && "opacity-70 cursor-wait",
-          )}
-          ref={ref}
-          data-slot="button"
-          {...props}
-        >
-          {React.cloneElement(child, {
-            disabled: isDisabled,
-            children: (
-              <>
-                {isLoading ? <Loader2 className="animate-spin" /> : leftIcon}
-                {child.props.children}
-                {!isLoading && rightIcon}
-              </>
-            ),
-          })}
-        </Slot>
-      );
+    if (asChild && React.isValidElement(children)) {
+      const child = children as React.ReactElement<
+        React.HTMLAttributes<HTMLElement> & { disabled?: boolean; "data-slot"?: string }
+      >;
+
+      return React.cloneElement(child, {
+        ...props,
+        "data-slot": "button",
+        className: cn(child.props.className, commonClasses),
+        disabled: isDisabled ?? child.props.disabled,
+        children: (
+          <>
+            {isLoading ? <Loader2 className="animate-spin" /> : leftIcon}
+            {child.props.children}
+            {!isLoading && rightIcon}
+          </>
+        ),
+      });
     }
 
     return (
       <button
-        className={cn(
-          buttonVariants({ variant, size, isIconButton, className }),
-          isLoading && "opacity-70 cursor-wait",
-        )}
         ref={ref}
+        type={props.type ?? "button"}
+        className={commonClasses}
         disabled={isDisabled}
         data-slot="button"
         {...props}
