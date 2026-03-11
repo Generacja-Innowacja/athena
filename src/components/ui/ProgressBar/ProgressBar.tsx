@@ -46,6 +46,12 @@ interface ProgressBarProps
     VariantProps<typeof progressBarVariants> {
   value: number;
   dataTestId?: string;
+interface ProgressBarProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof progressBarVariants>,
+    VariantProps<typeof progressBarFillVariants> {
+  value: number;
+  dataTestId?: string;
 }
 
 function ProgressBar({
