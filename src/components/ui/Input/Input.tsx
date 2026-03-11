@@ -90,7 +90,7 @@ export function Input({
     {RightIcon}
     {suffix && <span className="text-[#80A2A9]">{suffix}</span>}
   </div>
-      
+    )}  
      {isError && errorText ? (
         <p className="text-sm text-gi-red">{errorText}</p>
       ) : (
