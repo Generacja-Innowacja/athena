@@ -1,4 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
+import { Loader2 } from "lucide-react";
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
@@ -58,65 +59,66 @@ type ButtonProps = React.ComponentProps<"button"> &
     isLoading?: boolean;
   };
 
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  leftIcon,
-  rightIcon,
-  isLoading = false,
-  children,
-  disabled,
-  ...props
-}: ButtonProps) {
-  const commonClasses = cn(
-    buttonVariants({ variant, size, className }),
-    isLoading && "opacity-70 cursor-wait",
-  );
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      isIconButton,
+      asChild = false,
+      leftIcon,
+      rightIcon,
+      isLoading = false,
+      children,
+      disabled,
+      ...props
+    },
+    ref,
+  ) => {
+    const isDisabled = disabled || isLoading;
 
-  if (asChild && React.isValidElement(children)) {
-    const child = children as React.ReactElement<
-      React.HTMLAttributes<HTMLElement> & { "data-slot"?: string }
-    >;
+    const commonClasses = cn(
+      buttonVariants({ variant, size, isIconButton, className }),
+      isLoading && "opacity-70 cursor-wait",
+    );
 
-    return React.cloneElement(child, {
-      ...props,
-      "data-slot": "button",
-      className: cn(child.props.className, commonClasses),
-    });
-  }
+    if (asChild && React.isValidElement(children)) {
+      const child = children as React.ReactElement<
+        React.HTMLAttributes<HTMLElement> & { disabled?: boolean; "data-slot"?: string }
+      >;
 
-  return (
-    <button
-      data-slot="button"
-      disabled={disabled || isLoading}
-      className={commonClasses}
-      {...props}
-    >
-      {isLoading ? (
-        <svg
-          className="animate-spin"
-          xmlns="http://www.w3.org/"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-        </svg>
-      ) : (
-        leftIcon
-      )}
+      return React.cloneElement(child, {
+        ...props,
+        "data-slot": "button",
+        className: cn(child.props.className, commonClasses),
+        disabled: isDisabled ?? child.props.disabled,
+        children: (
+          <>
+            {isLoading ? <Loader2 className="animate-spin" /> : leftIcon}
+            {child.props.children}
+            {!isLoading && rightIcon}
+          </>
+        ),
+      });
+    }
 
-      {children}
-      {!isLoading && rightIcon}
-    </button>
-  );
-}
+    return (
+      <button
+        ref={ref}
+        type={props.type ?? "button"}
+        className={commonClasses}
+        disabled={isDisabled}
+        data-slot="button"
+        {...props}
+      >
+        {isLoading ? <Loader2 className="animate-spin" /> : leftIcon}
+        {children}
+        {!isLoading && rightIcon}
+      </button>
+    );
+  },
+);
+Button.displayName = "Button";
 
 export { Button, buttonVariants };
