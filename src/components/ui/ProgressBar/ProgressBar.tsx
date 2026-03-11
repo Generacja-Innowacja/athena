@@ -4,29 +4,21 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const progressBarVariants = cva(
-  "min-w-[200px] w-full overflow-hidden rounded-full bg-border transition-[width] duration-300",
+  "min-w-[200px] w-full overflow-hidden rounded-full bg-[#ECF0F2] transition-[width] duration-300",
   {
     variants: {
       size: {
         small: "h-2",
         regular: "h-4",
       },
-      variant: {
-        default: "bg-slate-900",
-        info: "bg-blue-500",
-        success: "bg-green-500",
-        warning: "bg-yellow-500",
-        error: "bg-red-500",
-      },
     },
     defaultVariants: {
       size: "regular",
-      variant: "default",
     },
   },
 );
 
-const progressBarFillVariants = cva("h-full transition-[width] duration-300 rouned-full", {
+const progressBarFillVariants = cva("h-full transition-[width] duration-300 rounded-full", {
   variants: {
     variant: {
       default: "bg-primary",
@@ -41,11 +33,6 @@ const progressBarFillVariants = cva("h-full transition-[width] duration-300 roun
   },
 });
 
-interface ProgressBarProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof progressBarVariants> {
-  value: number;
-  dataTestId?: string;
 interface ProgressBarProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof progressBarVariants>,
@@ -68,7 +55,7 @@ function ProgressBar({
     <div
       data-slot="progress-bar"
       data-test-id={dataTestId}
-        className={cn(progressBarVariants({ size, className }))}
+      className={cn(progressBarVariants({ size, className }))}
       role="progressbar"
       aria-valuenow={clampedValue}
       aria-valuemin={0}
