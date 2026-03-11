@@ -88,7 +88,7 @@ export function Input({
       {isError && errorText ? (
         <p className="text-sm text-gi-red">{errorText}</p>
       ) : (
-        helper && <p className="text-sm text-[#005F60]">{helper}</p>
+        helper && <p className="text-sm text-[#80A2A9]">{helper}</p>
       )}
     </div>
   );
