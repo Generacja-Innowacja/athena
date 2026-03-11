@@ -59,9 +59,13 @@ export function Input({
         </label>
       )}
 
-      <div className="relative flex items-center">
-        {prefix && <span className="mr-2 text-[#005F60]">{prefix}</span>}
-        {LeftIcon && <div className="mr-2">{LeftIcon}</div>}
+      <div className="relative">
+{(prefix || LeftIcon) && (
+  <div className="absolute left-3 top-1/2 flex -translate-y-1/2 items-center gap-1">
+    {prefix && <span className="text-[#005F60]">{prefix}</span>}
+    {LeftIcon}
+  </div>
+)}
         
         <input
           id={inputId}
@@ -74,17 +78,19 @@ export function Input({
           data-test-id={dataTestId}
           aria-invalid={isError || undefined}
           className={cn(
-            "h-8 w-full rounded-full border border-[#D1D5DB] bg-transparent px-3 py-1 text-base text-[#005F60] placeholder:text-[#005F60] focus:border focus:border-primary/20 disabled:cursor-not-allowed disabled:opacity-50",
+            "h-8 w-full rounded-full border border-[#D1D5DB] bg-transparent pl-8 pr-8 py-1 text-base text-[#005F60] placeholder:text-[#005F60] focus:border focus:border-primary/20 disabled:cursor-not-allowed disabled:opacity-50",
             isError && "border-gi-red",
             className
           )}
           {...inputProps}
         />
 
-        {RightIcon && <div className="ml-2">{RightIcon}</div>}
-        {suffix && <span className="ml-2 text-[#80A2A9]">{suffix}</span>}
-      </div>
-
+   {(RightIcon || suffix) && (
+  <div className="absolute right-3 top-1/2 flex -translate-y-1/2 items-center gap-1">
+    {RightIcon}
+    {suffix && <span className="text-[#80A2A9]">{suffix}</span>}
+  </div>
+)}
       {isError && errorText ? (
         <p className="text-sm text-gi-red">{errorText}</p>
       ) : (
