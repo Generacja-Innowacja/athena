@@ -18,7 +18,7 @@ const progressBarVariants = cva(
   },
 );
 
-const progressBarFillVariants = cva("h-full transition-[width] duration-300 rounded-full", {
+const progressBarFillVariants = cva("h-full transition-[width] duration-300 ease-in-out rounded-full", {
   variants: {
     variant: {
       default: "bg-primary",
