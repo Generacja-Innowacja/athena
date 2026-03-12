@@ -4,7 +4,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const progressBarVariants = cva(
-  "min-w-[200px] w-full overflow-hidden rounded-full bg-[#ECF0F2] transition-[width] duration-300",
+  "w-full overflow-hidden rounded-full bg-gi-ash",
   {
     variants: {
       size: {
